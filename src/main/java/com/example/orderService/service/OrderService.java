@@ -2,6 +2,7 @@ package com.example.orderService.service;
 
 import com.example.orderService.models.order.Order;
 import com.example.orderService.models.order.OrderStatus;
+import com.example.orderService.models.order.PaymentMethod;
 import com.example.orderService.notFoundException.notFoundException;
 import com.example.orderService.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +23,26 @@ public class OrderService {
     }
 
     public void changeOrderStatus(String orderId, OrderStatus orderStatus) throws notFoundException {
-        Optional<Order> order = orderRepository.findById(orderId);
-        if (order.isEmpty()){
-            throw new notFoundException("Order doesnt exist");
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new notFoundException("Order doesn't exist"));
+
+        if (orderStatus == OrderStatus.IN_STORE) {
+            if (order.getAmount() >= 2500 && order.getPaymentMethod() == PaymentMethod.CASH_ON_DELIVERY) {
+                order.setOrderStatus(OrderStatus.RETURNED_TO_CLIENT);
+                orderRepository.save(order);
+                System.out.println("Zamówienie o ID " + orderId + " zostało zwrócone do klienta, ponieważ kwota >= 2500 PLN i metoda płatności to gotówka przy odbiorze.");
+                return;
+            }
         }
-        order.ifPresent(o -> {
-            o.setOrderStatus(orderStatus);
-            orderRepository.save(o);
-        });
-        if (orderStatus == OrderStatus.ON_DELIVERY){
-            order.ifPresent(o -> {
-                o.setOrderStatus(OrderStatus.DELIVERED);
-                orderRepository.save(o);
-            });
+
+        if (orderStatus == OrderStatus.ON_DELIVERY) {
+            order.setOrderStatus(OrderStatus.DELIVERED);
+            orderRepository.save(order);
+            return;
         }
+
+        order.setOrderStatus(orderStatus);
+        orderRepository.save(order);
     }
 
     public List<Order> getAllOrders() {
