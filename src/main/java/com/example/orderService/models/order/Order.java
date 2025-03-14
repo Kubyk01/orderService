@@ -56,13 +56,11 @@ public class Order {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
+
+    public Date getOrderDate() {return orderDate;}
 
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
