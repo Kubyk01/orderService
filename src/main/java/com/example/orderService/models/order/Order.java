@@ -60,6 +60,10 @@ public class Order {
         this.orderDate = orderDate;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Date getOrderDate() {return orderDate;}
 
     public PaymentMethod getPaymentMethod() {

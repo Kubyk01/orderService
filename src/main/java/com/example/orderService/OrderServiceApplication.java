@@ -95,7 +95,7 @@ public class OrderServiceApplication implements CommandLineRunner {
 
                 }
                 case "3" -> {
-                    System.out.println("Przegląd wszystich zamowień");
+                    System.out.println("Przeglad wszystich zamowien");
                     long amountOrders = orderService.countOrders();
                     List<Order> orders = orderService.getAllOrders();
                     System.out.println("All orders: " + amountOrders);
@@ -112,7 +112,7 @@ public class OrderServiceApplication implements CommandLineRunner {
                     }
                 }
                 case "4" -> {
-                    System.out.println("Przegląd zamówień");
+                    System.out.println("Przeglad zamowien");
                     System.out.print("Wprowadz id zamowienia: ");
                     gesture = scanner.next();
                     try {
@@ -218,7 +218,7 @@ public class OrderServiceApplication implements CommandLineRunner {
                     final String customerCategoryInput = scanner.next();
                     final CustomerType selectedCustomerType;
                     if (customerCategoryInput.equalsIgnoreCase("ALL")) {
-                        selectedCustomerType = null; // Wszystkie typy klientów
+                        selectedCustomerType = null;
                     } else {
                         try {
                             selectedCustomerType = CustomerType.valueOf(customerCategoryInput);
@@ -277,7 +277,7 @@ public class OrderServiceApplication implements CommandLineRunner {
                     System.out.println("1. Tworzenie zamowienia");
                     System.out.println("2. Zmiana statusu zamowienia");
                     System.out.println("3. Przeglad wszystich zamowien");
-                    System.out.println("4. Przeglad zamowień za id");
+                    System.out.println("4. Przeglad zamowien za id");
                     System.out.println("5. Zmiana kwoty, nazwy klienta, typu klienta, adresu czy sposobu platnosci");
                     System.out.println("6. Statystyka");
                     System.out.println("7. Wypisanie rabatu");
