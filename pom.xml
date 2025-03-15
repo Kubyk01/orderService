@@ -80,12 +80,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>no-console</id>
-			<properties>
-				<spring.profiles.active>no-console</spring.profiles.active>
-			</properties>
-		</profile>
-	</profiles>
 </project>
