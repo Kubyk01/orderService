@@ -104,6 +104,7 @@ public class OrderServiceApplication implements CommandLineRunner {
                         System.out.println("CustomerType: " + order.getCustomerType());
                         System.out.println("Amount: " + order.getAmount());
                         System.out.println("ProductName: " + order.getProductName());
+                        System.out.println("OrderDate: " + order.getOrderDate());
                         System.out.println("DeliveryAddress: " + order.getDeliveryAddress());
                         System.out.println("PaymentMethod: " + order.getPaymentMethod());
                         System.out.println("OrderStatus: " + order.getOrderStatus());
@@ -121,6 +122,7 @@ public class OrderServiceApplication implements CommandLineRunner {
                         System.out.println("CustomerType: " + order.getCustomerType());
                         System.out.println("Amount: " + order.getAmount());
                         System.out.println("ProductName: " + order.getProductName());
+                        System.out.println("OrderDate: " + order.getOrderDate());
                         System.out.println("DeliveryAddress: " + order.getDeliveryAddress());
                         System.out.println("PaymentMethod: " + order.getPaymentMethod());
                         System.out.println("OrderStatus: " + order.getOrderStatus());
