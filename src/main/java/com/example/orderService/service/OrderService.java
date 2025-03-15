@@ -65,13 +65,13 @@ public class OrderService {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Order with ID " + orderId + " not found"));
 
-        if (updatedOrder.getDeliveryAddress() == null || updatedOrder.getDeliveryAddress().trim().isEmpty()) {
-            throw new IllegalArgumentException("Delivery address cannot be empty.");
+        if (updatedOrder.getDeliveryAddress() != null && !updatedOrder.getDeliveryAddress().isEmpty()) {
+            order.setDeliveryAddress(updatedOrder.getDeliveryAddress());
         }
 
         order.setAmount(updatedOrder.getAmount());
         order.setPaymentMethod(updatedOrder.getPaymentMethod());
-        order.setDeliveryAddress(updatedOrder.getDeliveryAddress());
+
 
         orderRepository.save(order);
     }

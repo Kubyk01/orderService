@@ -36,6 +36,7 @@ public class OrderServiceTest {
         order.setProductName("Laptop");
         order.setPaymentMethod(PaymentMethod.CASH_ON_DELIVERY);
         order.setOrderStatus(OrderStatus.NEW);
+        order.setDeliveryAddress("address");
     }
 
     @Test

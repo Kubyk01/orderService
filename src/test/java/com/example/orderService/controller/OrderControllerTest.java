@@ -43,6 +43,7 @@ public class OrderControllerTest {
         order.setProductName("Laptop");
         order.setDeliveryAddress("Warsaw");
         order.setOrderStatus(OrderStatus.NEW);
+        order.setDeliveryAddress("address");
     }
 
     @Test
