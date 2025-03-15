@@ -19,8 +19,13 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     public Order createOrder(Order order) {
+        if (order.getDeliveryAddress() == null || order.getDeliveryAddress().trim().isEmpty()) {
+            throw new IllegalArgumentException("Delivery address cannot be empty.");
+        }
+
         return orderRepository.save(order);
     }
+
 
     public void changeOrderStatus(String orderId, OrderStatus orderStatus) throws notFoundException {
         Order order = orderRepository.findById(orderId)
@@ -55,14 +60,20 @@ public class OrderService {
         }
         return orders.stream().toList().get(0);
     }
+
     public void updateOrder(String orderId, Order updatedOrder) {
-        Optional<Order> order = orderRepository.findById(orderId);
-        order.ifPresent(o -> {
-            o.setAmount(updatedOrder.getAmount());
-            o.setPaymentMethod(updatedOrder.getPaymentMethod());
-            o.setDeliveryAddress(updatedOrder.getDeliveryAddress());
-            orderRepository.save(o);
-        });
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException("Order with ID " + orderId + " not found"));
+
+        if (updatedOrder.getDeliveryAddress() == null || updatedOrder.getDeliveryAddress().trim().isEmpty()) {
+            throw new IllegalArgumentException("Delivery address cannot be empty.");
+        }
+
+        order.setAmount(updatedOrder.getAmount());
+        order.setPaymentMethod(updatedOrder.getPaymentMethod());
+        order.setDeliveryAddress(updatedOrder.getDeliveryAddress());
+
+        orderRepository.save(order);
     }
 
     public long countOrders() {
