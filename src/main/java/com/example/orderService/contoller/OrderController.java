@@ -4,6 +4,7 @@ import com.example.orderService.models.order.Order;
 import com.example.orderService.models.order.OrderStatus;
 import com.example.orderService.service.OrderService;
 import com.example.orderService.notFoundException.notFoundException;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
+@Profile("Endpoints")
 public class OrderController {
 
     private final OrderService orderService;

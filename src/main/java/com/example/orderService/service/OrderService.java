@@ -30,7 +30,6 @@ public class OrderService {
             if (order.getAmount() >= 2500 && order.getPaymentMethod() == PaymentMethod.CASH_ON_DELIVERY) {
                 order.setOrderStatus(OrderStatus.RETURNED_TO_CLIENT);
                 orderRepository.save(order);
-                System.out.println("Zamówienie o ID " + orderId + " zostało zwrócone do klienta, ponieważ kwota >= 2500 PLN i metoda płatności to gotówka przy odbiorze.");
                 return;
             }
         }

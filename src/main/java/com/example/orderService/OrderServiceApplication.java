@@ -12,7 +12,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
@@ -34,7 +33,7 @@ public class OrderServiceApplication implements CommandLineRunner {
         Scanner scanner = new Scanner(System.in);
         String gesture;
 
-        while (true) {
+        while (!Boolean.parseBoolean(System.getProperty("isRunningMaven"))) {
             System.out.print("Waiting for command: ");
             gesture = scanner.next();
 
@@ -50,7 +49,7 @@ public class OrderServiceApplication implements CommandLineRunner {
                         System.out.println("Blad! Wprowadz prawidlowe dane");
                         break;
                     }
-                    System.out.print("Wprowadz ilosc: ");
+                    System.out.print("Wprowadz cene: ");
                     gesture = scanner.next();
                     try {
                         newOrder.setAmount(Double.parseDouble(gesture));
