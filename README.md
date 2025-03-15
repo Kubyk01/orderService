@@ -1,6 +1,7 @@
 # OrderService
 
-This project is a simple Spring Boot application that manages orders for an e-commerce platform. It includes features such as creating, updating, and deleting orders, as well as providing statistics.
+This project is a simple Spring Boot console application that manages orders for an e-commerce platform. It includes features such as creating, updating, and deleting orders, as well as providing statistics.
+Also, there are opportunity to enable endpoints there and make it backend-console application
 
 ## Prerequisites
 
